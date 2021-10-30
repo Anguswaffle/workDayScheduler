@@ -8,4 +8,4 @@ User is given a daily planner to create a schedule. Current day is displayed at 
 ## Mock-Up
 The following image shows the web application's appearance and functionality:
 
-![Scheduler Preview](./assets/images/preview.png)
+![Scheduler Preview](./assets/images/preview.jpg)

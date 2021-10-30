@@ -3,23 +3,9 @@ var containerEl = $(".container")
 var saveBtns = document.querySelectorAll(".saveBtn");
 var textElArray = [];
 var meetingsArray = [];
-var test = 0;
 
-
+// Sets date in header
 currentDayEl.text(moment().format("LL"));
-
-/*
-Array of textarea elements
-function that checks time
-if x hours after 8AM, turn that textarea red, turn less than x hours before gray
-all other boxes green
-
-button saves to local storage
-object with each hour as a property
-
-init() runs on load, fills in boxes with localstorage stuff
-
-*/
 
 // Sets background colors depending on time of day
 function setColors() {
@@ -29,7 +15,6 @@ function setColors() {
     var timePassed = moment(startTime).startOf(moment()).fromNow().charAt(0);
     var hoursLeft = 9;
 
-    console.log(timePassed);
     // Adds past class to text areas in the past
     for(var i = 0 ; i < timePassed ; i++){
         textElArray[i].addClass("past");
@@ -48,8 +33,7 @@ function setColors() {
 
 }
 
-
-// Populates text areas with saved
+// Populates text areas with locally saved text
 function populateText() {
     for (var i = 0 ; i < textElArray.length ; i++){
         $(textElArray[i]).val(meetingsArray[i]);
@@ -63,7 +47,6 @@ function saveSchedule(target) {
     meetingsArray[textID] = textArea.value;
     localStorage.setItem('meetings', JSON.stringify(meetingsArray));
 }
-
 
 // Runs on page load
 function init() {

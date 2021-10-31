@@ -55,7 +55,7 @@ function populateText() {
 function setColors() {
 
     // Determines how many hours have passed since 9:00 AM
-    var hoursPassed = new Date().getHours();
+    var hoursPassed = new Date().getHours() - 9;
     var hoursLeft = 9;
 
     // If before 9 AM, past and present hours aren't colored

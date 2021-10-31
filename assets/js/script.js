@@ -55,12 +55,13 @@ function populateText() {
 function setColors() {
 
     // Determines how many hours have passed since 9:00 AM
-    var hoursPassed = new Date().getHours() - 9;
-    var hoursLeft = 8;
+    var hoursPassed = new Date().getHours();
+    var hoursLeft = 9;
 
+    // If before 9 AM, past and present hours aren't colored
     if (hoursPassed >= 0) {
         // Adds past class to text areas in the past
-        for (var i = 0; i < hoursPassed; i++) {
+        for (var i = 0; i < hoursPassed && i < 9; i++) {
             textElArray[i].addClass("past");
             hoursLeft--;
         }
@@ -68,13 +69,14 @@ function setColors() {
         // Adds present class to text area in the active hour
         if (hoursPassed >= 0 && hoursPassed < 9) {
             textElArray[hoursPassed].addClass("present");
-        }
-
-        // Adds future class to text areas coming up
-        while (hoursLeft > 0) {
-            textElArray[9 - hoursLeft].addClass("future");
             hoursLeft--;
         }
+    }
+
+    // Adds future class to text areas coming up
+    while (hoursLeft > 0) {
+        textElArray[9 - hoursLeft].addClass("future");
+        hoursLeft--;
     }
 }
 

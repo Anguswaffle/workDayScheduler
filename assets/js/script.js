@@ -15,20 +15,18 @@ function init() {
         saveSchedule(this);
     })
 
+    // Puts all text area elements into an array
+    for (var i = 0; i < containerEl.children().length; i++) {
+        textElArray.push(containerEl.children().eq(i).children().eq(1));
+    }
+
     // Checks to see if localStorage exists
-    // If not, makes an empty meetingsArray and stores in local storage
+    // If not, makes an empty local storage
     if (JSON.parse(localStorage.getItem('meetings')) === null) {
-        for (var i = 0; i < containerEl.children().length; i++) {
-            textElArray.push(containerEl.children().eq(i).children().eq(1));
-            meetingsArray.push("");
-        }
         localStorage.setItem('meetings', JSON.stringify(meetingsArray));
 
         // If local storage exists, values are retrieved and populate text areas
-    } else {
-        for (var i = 0; i < containerEl.children().length; i++) {
-            textElArray.push(containerEl.children().eq(i).children().eq(1));
-        }
+    } else {       
         meetingsArray = JSON.parse(localStorage.getItem('meetings'));
         populateText();
     }
@@ -36,6 +34,7 @@ function init() {
     setColors();
 }
 
+// Saves text to local storage
 function saveSchedule(target) {
     var textArea = target.previousElementSibling;
     var textID = textArea.parentElement.id;
